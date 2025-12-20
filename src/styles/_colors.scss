@@ -1,0 +1,28 @@
+/*DSGOV*/
+:root {
+  --pure-0: #ffffff;
+  --gray-80: #333333;
+  --gray-5: #f2f2f2;
+
+  --blue-warm-vivid-70: #1351B4;
+  --blue-warm-vivid-90: #071D41;
+
+  --feedback-success: #168821;
+  --feedback-warning: #FFCD07;
+  --feedback-error: #E52207;
+}
+
+/* TOKENS SEMÂNTICOS*/
+:root {
+  /* Superfície */
+  --surface-light: var(--pure-0);
+  --surface-light-alt: var(--gray-5);
+  --surface-dark: var(--blue-warm-vivid-90);
+
+  /* Texto */
+  --text-on-light: var(--gray-80);
+  --text-on-dark: var(--pure-0);
+
+  /* Interação */
+  --interactive-light: var(--blue-warm-vivid-70);
+}
