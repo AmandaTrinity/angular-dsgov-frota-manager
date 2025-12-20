@@ -1,0 +1,47 @@
+<header class="br-header">
+  <div class="container-lg">
+    <div class="header-top">
+        <a class="br-skip-link" href="#main-content" accesskey="1">Ir para o conteúdo</a>
+
+        <div class="header-functions">
+            <button class="br-button circle small" type="button" aria-label="Alto Contraste">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="header-main">
+        <div class="header-logo">
+            <img src="assets/images/logo.svg" alt="Logotipo do Governo Federal"/>
+            <span class="br-divider vertical" aria-hidden="true"></span>
+            <div class="header-sign">Frota Gerencial</div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <nav class="br-menu" id="main-navigation" aria-label="Menu Principal">
+            <ul>
+                <li>
+                    <a class="menu-item" routerLink="/dashboard" routerLinkActive="active">
+                    Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-item" routerLink="/consulta" routerLinkActive="active">
+                    Consulta
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="br-breadcrumb" aria-label="Caminho de navegação">
+    <ul class="breadcrumb-list">
+        <li class="breadcrumb-item">
+            <a routerLink="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Dashboard
+        </li>
+    </ul>
+</nav>

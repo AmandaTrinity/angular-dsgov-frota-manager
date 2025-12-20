@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Garante que o corpo ocupe no mínimo a altura da tela 📱
+  margin: 0;
+}
+
+main {
+  flex: 1; // Faz o conteúdo principal expandir para preencher o espaço ↔️
+  background-color: var(--surface-light);
+}
+
+.container-lg {
+  width: 100%;
+  max-width: 1200px; // Largura máxima padrão para desktop
+  margin-right: auto;
+  margin-left: auto;
+  
+  // Padding lateral usando sua escala de 16px (2x)
+  padding-right: var(--spacing-scale-2x);
+  padding-left: var(--spacing-scale-2x);
+
+  @media (min-width: 1200px) {
+    padding-right: var(--spacing-scale-3x); // 24px em telas maiores
+    padding-left: var(--spacing-scale-3x);
+  }
+}
+
+.br-menu {
+  ul {
+    display: flex; // Alinha os itens lado a lado ↔️
+    list-style: none; // Remove as "bolinhas" da lista 🚫
+    gap: var(--spacing-scale-2x); // Usa seus 16px de escala 📐
+    padding: 0;
+    margin: 0;
+
+    a {
+      text-decoration: none;
+      color: var(--text-on-light); // Seu cinza #333333
+      font-weight: var(--font-weight-medium);
+
+      &.active {
+        color: var(--blue-warm-vivid-70); // O azul oficial
+        border-bottom: 2px solid var(--blue-warm-vivid-70);
+      }
+    }
+  }
+}
