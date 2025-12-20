@@ -1,0 +1,51 @@
+:root {
+    /* Fonte */
+    --font-family-base: 'Rawline', 'Raleway', sans-serif;
+
+    /* Pesos */
+    --font-weight-thin: 100;
+    --font-weight-extra-light: 200;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+    --font-weight-black: 900;
+
+    /* Escala Tipográfica */
+    --font-size-scale-base: 1em; /* 14px */
+    --font-size-scale-up-01: 1.2em;
+    --font-size-scale-up-02: 1.44em;
+    --font-size-scale-up-03: 1.728em;
+    --font-size-scale-up-04: 2.074em;
+    --font-size-scale-up-05: 2.488em;
+    --font-size-scale-up-06: 2.986em;
+
+    /* Line Heigth */
+    --font-lineheight-low: 1.15;
+    --font-lineheight-medium: 1.45;
+}
+
+h1 {
+  font-size: var(--font-size-scale-up-06);
+  font-weight: var(--font-weight-light);
+  line-height: var(--font-lineheight-low);
+}
+
+h2 {
+  font-size: var(--font-size-scale-up-05);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-lineheight-low);
+}
+
+h3 {
+  font-size: var(--font-size-scale-up-04);
+  font-weight: var(--font-weight-medium);
+}
+
+p {
+  font-size: var(--font-size-scale-up-01);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-lineheight-medium);
+}

@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/colors';
+@use 'styles/typography';
+@use 'styles/spacing';
+
+*,*::before,*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--font-lineheight-medium);
+    color: var(--text-on-light);
+    background-color: var(--surface-light);
+}
+
