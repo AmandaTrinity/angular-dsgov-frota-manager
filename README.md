@@ -1,59 +1,61 @@
-# VlabFrontendFrotaGerencial
+# V-Lab Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+Este repositório contém o desenvolvimento da seleção de **frontend do V-Lab**, estruturado com foco em boas práticas de arquitetura, organização visual e aderência ao **Padrão Digital de Governo (DSGOV)**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🎯 Objetivo do Projeto
 
-```bash
-ng serve
-```
+Construir uma base sólida de frontend utilizando **Angular 16+**, preparada para escalabilidade e manutenção, respeitando princípios de acessibilidade, consistência visual e organização arquitetural.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🧠 Metodologia de Trabalho
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Mesmo com um tempo de desenvolvimento reduzido, foi adotada uma organização prévia para garantir clareza e produtividade ao longo do processo.
 
-```bash
-ng generate component component-name
-```
+- **Prototipação inicial de baixa fidelidade (papel)**  
+  Utilizada para validar rapidamente a estrutura das telas e o fluxo de navegação antes da implementação.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Organização das tarefas**  
+  O acompanhamento do desenvolvimento é feito através do Trello, permitindo uma visão clara do progresso e das prioridades do projeto:  
+  👉 https://trello.com/b/GPChYR9o/v-lab-front
 
-```bash
-ng generate --help
-```
+- **Aprendizado guiado com IA**  
+  A ferramenta **Gemini** está sendo utilizada como apoio ao aprendizado guiado, auxiliando na tomada de decisões técnicas e na compreensão de conceitos durante o desenvolvimento.
 
-## Building
+---
 
-To build the project run:
+## 🎨 Design System e Padrões Visuais
 
-```bash
-ng build
-```
+O projeto segue os fundamentos do **Design System do Governo Federal (DSGOV)**, garantindo consistência visual, acessibilidade e reutilização de padrões.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Documentação utilizada:  
+👉 https://www.gov.br/ds/fundamentos-visuais/espacamento
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 🧱 Arquitetura
 
-```bash
-ng test
-```
+O projeto adota o **padrão Facade**, promovendo:
+- Separação entre lógica de negócio e apresentação
+- Componentes mais simples e reutilizáveis
+- Facilidade de manutenção e escalabilidade
 
-## Running end-to-end tests
+Estrutura base de camadas:
+- `components` – Componentes visuais
+- `facades` – Intermediação entre componentes e serviços
+- `services` – Regras de negócio e comunicação
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## 🛠️ Tecnologias Utilizadas
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- **Angular 16+**
+- **TypeScript**
+- **CSS Custom Properties (tokens de design)**
+- **SCSS** para estilização
+- **Trello** para organização
+- **Gemini** como suporte de aprendizado guiado
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
