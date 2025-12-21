@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GovHeaderComponent } from './shared/components/gov-header/gov-header'
+import { GovHeaderComponent } from './shared/components/gov-header/gov-header.component'
 
 @Component({
   selector: 'app-root',
