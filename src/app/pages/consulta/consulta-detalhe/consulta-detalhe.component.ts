@@ -10,8 +10,8 @@ import { CpfMaskPipe } from '../../../shared/pipes/cpf-mask.pipe';
   selector: 'app-consulta-detalhe',
   standalone: true,
   imports: [CommonModule, RouterModule, CpfMaskPipe],
-  templateUrl: './consulta-detalhe.html',
-  styleUrl: './consulta-detalhe.scss',
+  templateUrl: './consulta-detalhe.component.html',
+  styleUrl: './consulta-detalhe.component.scss',
 })
 export class ConsultaDetalheComponent implements OnInit {
   abastecimento$!: Observable<Abastecimento | undefined>;
