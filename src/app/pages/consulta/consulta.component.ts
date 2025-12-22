@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map, take } from 'rxjs/operators';
 import { ConsultaFacade } from '../../core/facades/consulta.facade';
@@ -16,7 +17,7 @@ interface FiltrosForm {
 @Component({
   selector: 'app-consulta',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './consulta.component.html',
   styleUrls: ['./consulta.component.scss']
 })
