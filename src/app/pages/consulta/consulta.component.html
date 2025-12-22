@@ -1,0 +1,77 @@
+<div class="consulta-container">
+  <section class="filtros-card">
+    <h3>Filtros de Consulta</h3>
+    <form [formGroup]="filterForm" class="filtros-form">
+      <div class="form-field">
+        <label for="uf">Estado (UF)</label>
+        <select id="uf" formControlName="uf">
+          <option value="">Todos</option>
+          <option *ngFor="let uf of ufs" [value]="uf">{{ uf }}</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="tipo">Tipo de Combustível</label>
+        <select id="tipo" formControlName="tipo">
+          <option value="">Todos</option>
+          <option value="Gasolina">Gasolina</option>
+          <option value="Etanol">Etanol</option>
+          <option value="Diesel">Diesel</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="dataInicio">Data Início</label>
+        <input type="date" id="dataInicio" formControlName="dataInicio">
+      </div>
+      <div class="form-field">
+        <label for="dataFim">Data Fim</label>
+        <input type="date" id="dataFim" formControlName="dataFim">
+      </div>
+      <div class="form-actions">
+        <button type="button" (click)="limparFiltros()">Limpar Filtros</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="resultados-card">
+    <header class="resultados-header">
+      <h3>Resultados da Consulta</h3>
+      <span>{{ totalResultados$ | async }} registro(s) encontrado(s)</span>
+    </header>
+
+    <div class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Posto</th>
+            <th>UF</th>
+            <th>Combustível</th>
+            <th>Valor/Litro</th>
+            <th>Litros</th>
+            <th>Total Pago</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of abastecimentosExibidos$ | async">
+            <td>{{ item.data | date:'dd/MM/yyyy' }}</td>
+            <td>{{ item.posto }}</td>
+            <td>{{ item.uf }}</td>
+            <td>{{ item.tipoCombustivel }}</td>
+            <td>{{ item.valorLitro | currency:'BRL' }}</td>
+            <td>{{ item.quantidadeLitros }} L</td>
+            <td>{{ item.valorTotalPago | currency:'BRL' }}</td>
+          </tr>
+          <tr *ngIf="(totalResultados$ | async) === 0">
+            <td colspan="7" class="no-results">Nenhum resultado encontrado para os filtros aplicados.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="paginacao-footer" *ngIf="((totalPaginas$ | async) ?? 0) > 1">
+      <button (click)="voltarPagina()" [disabled]="(paginaAtual$ | async) === 1">Anterior</button>
+      <span>Página {{ paginaAtual$ | async }} de {{ totalPaginas$ | async }}</span>
+      <button (click)="proximaPagina()" [disabled]="(paginaAtual$ | async) === (totalPaginas$ | async)">Próxima</button>
+    </footer>
+  </section>
+</div>

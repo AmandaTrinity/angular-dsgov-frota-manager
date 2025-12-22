@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GovHeader } from './gov-header';
+import { ConsultaComponent } from './consulta.component';
 
-describe('GovHeader', () => {
-  let component: GovHeader;
-  let fixture: ComponentFixture<GovHeader>;
+describe('Consulta', () => {
+  let component: ConsultaComponent;
+  let fixture: ComponentFixture<ConsultaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GovHeader]
+      imports: [ConsultaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GovHeader);
+    fixture = TestBed.createComponent(ConsultaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
