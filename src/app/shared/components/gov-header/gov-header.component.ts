@@ -13,8 +13,8 @@ interface Breadcrumb {
   selector: 'app-gov-header',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './gov-header.html',
-  styleUrls: ['./gov-header.scss'],
+  templateUrl: './gov-header.component.html',
+  styleUrls: ['./gov-header.component.scss'],
 })
 export class GovHeaderComponent implements OnInit {
   // Array que guardará os breadcrumbs da rota ativa
