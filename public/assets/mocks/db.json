@@ -6,6 +6,8 @@
       "posto": "Posto Alvorada",
       "uf": "SP",
       "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
       "valorLitro": 5.59,
       "quantidadeLitros": 45,
       "valorTotalPago": 251.55
@@ -16,6 +18,8 @@
       "posto": "Posto Central",
       "uf": "RJ",
       "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Paulo Fernando Costa", "cpf": "12345678900" },
+      "veiculo": { "placa": "MNO-7890", "modelo": "Volvo FH" },
       "valorLitro": 6.10,
       "quantidadeLitros": 100,
       "valorTotalPago": 610.00
@@ -26,6 +30,8 @@
       "posto": "Posto do Sul",
       "uf": "RS",
       "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Lucas Martins", "cpf": "32109876543" },
+      "veiculo": { "placa": "JKL-3456", "modelo": "Chevrolet Onix" },
       "valorLitro": 5.75,
       "quantidadeLitros": 30,
       "valorTotalPago": 172.50
@@ -36,6 +42,8 @@
       "posto": "Auto Posto Norte",
       "uf": "AM",
       "tipoCombustivel": "Etanol",
+      "motorista": { "nome": "Mariana Souza", "cpf": "56789012345" },
+      "veiculo": { "placa": "GHI-9012", "modelo": "Scania R450" },
       "valorLitro": 4.20,
       "quantidadeLitros": 50,
       "valorTotalPago": 210.00
@@ -46,6 +54,8 @@
       "posto": "Posto Ipê",
       "uf": "GO",
       "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Carlos Silva", "cpf": "98765432100" },
+      "veiculo": { "placa": "DEF-5678", "modelo": "VW Gol" },
       "valorLitro": 5.89,
       "quantidadeLitros": 40,
       "valorTotalPago": 235.60
@@ -56,6 +66,8 @@
       "posto": "Posto Beira Mar",
       "uf": "CE",
       "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Paulo Fernando Costa", "cpf": "12345678900" },
+      "veiculo": { "placa": "MNO-7890", "modelo": "Volvo FH" },
       "valorLitro": 6.25,
       "quantidadeLitros": 80,
       "valorTotalPago": 500.00
@@ -66,9 +78,155 @@
       "posto": "Posto Beira Mar",
       "uf": "CE",
       "tipoCombustivel": "Etanol",
+      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
       "valorLitro": 4.20,
       "quantidadeLitros": 80,
       "valorTotalPago": 336.00
-   }
+    },
+    {
+      "id": 8,
+      "data": "2023-01-20",
+      "posto": "Posto Bandeirantes",
+      "uf": "MG",
+      "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Carlos Silva", "cpf": "98765432100" },
+      "veiculo": { "placa": "DEF-5678", "modelo": "VW Gol" },
+      "valorLitro": 5.40,
+      "quantidadeLitros": 50,
+      "valorTotalPago": 270.00
+    },
+    {
+      "id": 9,
+      "data": "2023-02-15",
+      "posto": "Posto Pelicano",
+      "uf": "BA",
+      "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Mariana Souza", "cpf": "56789012345" },
+      "veiculo": { "placa": "GHI-9012", "modelo": "Scania R450" },
+      "valorLitro": 6.05,
+      "quantidadeLitros": 120,
+      "valorTotalPago": 726.00
+    },
+    {
+      "id": 10,
+      "data": "2023-03-10",
+      "posto": "Posto Alvorada",
+      "uf": "SP",
+      "tipoCombustivel": "Etanol",
+      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
+      "valorLitro": 3.90,
+      "quantidadeLitros": 40,
+      "valorTotalPago": 156.00
+    },
+    {
+      "id": 11,
+      "data": "2023-04-25",
+      "posto": "Posto Pinheirão",
+      "uf": "PR",
+      "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Lucas Martins", "cpf": "32109876543" },
+      "veiculo": { "placa": "JKL-3456", "modelo": "Chevrolet Onix" },
+      "valorLitro": 5.65,
+      "quantidadeLitros": 35,
+      "valorTotalPago": 197.75
+    },
+    {
+      "id": 12,
+      "data": "2023-05-18",
+      "posto": "Posto Ilha",
+      "uf": "SC",
+      "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Paulo Fernando Costa", "cpf": "12345678900" },
+      "veiculo": { "placa": "MNO-7890", "modelo": "Volvo FH" },
+      "valorLitro": 5.90,
+      "quantidadeLitros": 90,
+      "valorTotalPago": 531.00
+    },
+    {
+      "id": 13,
+      "data": "2023-06-22",
+      "posto": "Posto Central",
+      "uf": "RJ",
+      "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
+      "valorLitro": 5.70,
+      "quantidadeLitros": 42,
+      "valorTotalPago": 239.40
+    },
+    {
+      "id": 14,
+      "data": "2023-07-28",
+      "posto": "Posto Bandeirantes",
+      "uf": "MG",
+      "tipoCombustivel": "Etanol",
+      "motorista": { "nome": "Carlos Silva", "cpf": "98765432100" },
+      "veiculo": { "placa": "DEF-5678", "modelo": "VW Gol" },
+      "valorLitro": 4.10,
+      "quantidadeLitros": 38,
+      "valorTotalPago": 155.80
+    },
+    {
+      "id": 15,
+      "data": "2023-08-25",
+      "posto": "Posto Alvorada",
+      "uf": "SP",
+      "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Lucas Martins", "cpf": "32109876543" },
+      "veiculo": { "placa": "JKL-3456", "modelo": "Chevrolet Onix" },
+      "valorLitro": 5.62,
+      "quantidadeLitros": 48,
+      "valorTotalPago": 269.76
+    },
+    {
+      "id": 16,
+      "data": "2023-09-18",
+      "posto": "Posto Pinheirão",
+      "uf": "PR",
+      "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Mariana Souza", "cpf": "56789012345" },
+      "veiculo": { "placa": "GHI-9012", "modelo": "Scania R450" },
+      "valorLitro": 6.15,
+      "quantidadeLitros": 110,
+      "valorTotalPago": 676.50
+    },
+    {
+      "id": 17,
+      "data": "2023-10-15",
+      "posto": "Posto Pelicano",
+      "uf": "BA",
+      "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Carlos Silva", "cpf": "98765432100" },
+      "veiculo": { "placa": "DEF-5678", "modelo": "VW Gol" },
+      "valorLitro": 5.80,
+      "quantidadeLitros": 33,
+      "valorTotalPago": 191.40
+    },
+    {
+      "id": 18,
+      "data": "2023-11-25",
+      "posto": "Posto do Sul",
+      "uf": "RS",
+      "tipoCombustivel": "Etanol",
+      "motorista": { "nome": "Lucas Martins", "cpf": "32109876543" },
+      "veiculo": { "placa": "JKL-3456", "modelo": "Chevrolet Onix" },
+      "valorLitro": 4.30,
+      "quantidadeLitros": 45,
+      "valorTotalPago": 193.50
+    },
+    {
+      "id": 19,
+      "data": "2023-12-20",
+      "posto": "Posto Alvorada",
+      "uf": "SP",
+      "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Paulo Fernando Costa", "cpf": "12345678900" },
+      "veiculo": { "placa": "MNO-7890", "modelo": "Volvo FH" },
+      "valorLitro": 6.30,
+      "quantidadeLitros": 95,
+      "valorTotalPago": 598.50
+    }
   ]
 }

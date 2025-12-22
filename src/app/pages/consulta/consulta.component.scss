@@ -58,19 +58,34 @@ h3 {
   gap: var(--spacing-scale-base);
 }
 
+// Estilo base para botões de ação do formulário
 .form-actions button {
   padding: var(--spacing-scale-base) var(--spacing-scale-2x);
-  border: none;
-  background-color: var(--blue-warm-vivid-70);
-  color: var(--pure-0);
+  border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
   font-weight: var(--font-weight-bold);
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.form-actions button:hover {
-  background-color: var(--blue-warm-vivid-80);
+// Estilo para o botão primário
+.form-actions button:not(.secondary) {
+  background-color: var(--blue-warm-vivid-70);
+  color: var(--pure-0);
+  &:hover {
+    background-color: var(--blue-warm-vivid-80);
+  }
+}
+
+// Estilo para o botão secundário
+.form-actions button.secondary {
+  background-color: transparent;
+  border-color: var(--border-color);
+  color: var(--text-on-light);
+  &:hover {
+    background-color: var(--surface-light-alt);
+    border-color: var(--text-on-light);
+  }
 }
 
 .resultados-header {
@@ -98,6 +113,24 @@ th, td {
   padding: var(--spacing-scale-base) var(--spacing-scale-2x);
   text-align: left;
   border-bottom: 1px solid var(--border-color);
+}
+
+.text-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tabela-container .br-button.circle {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+  }
 }
 
 thead th {

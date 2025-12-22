@@ -24,6 +24,9 @@ Mesmo com um tempo de desenvolvimento reduzido, foi adotada uma organização pr
 - **Aprendizado guiado com IA**  
   A ferramenta **Gemini** está sendo utilizada como apoio ao aprendizado guiado, auxiliando na tomada de decisões técnicas e na compreensão de conceitos durante o desenvolvimento.
 
+ - **Fluxo de Desenvolvimento com Pull Requests (PRs)**  
+   Para garantir a qualidade e a revisão do código, cada nova funcionalidade ou correção é desenvolvida em uma branch separada e integrada à branch `main` por meio de um Pull Request. Isso evita commits diretos na branch principal e promove a colaboração.
+
 ---
 
 ## 🎨 Design System e Padrões Visuais

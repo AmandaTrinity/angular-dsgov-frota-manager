@@ -27,7 +27,7 @@
         <input type="date" id="dataFim" formControlName="dataFim">
       </div>
       <div class="form-actions">
-        <button type="button" (click)="limparFiltros()">Limpar Filtros</button>
+        <button type="button" class="secondary" (click)="limparFiltros()">Limpar Filtros</button>
       </div>
     </form>
   </section>
@@ -49,6 +49,7 @@
             <th>Valor/Litro</th>
             <th>Litros</th>
             <th>Total Pago</th>
+            <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -60,9 +61,14 @@
             <td>{{ item.valorLitro | currency:'BRL' }}</td>
             <td>{{ item.quantidadeLitros }} L</td>
             <td>{{ item.valorTotalPago | currency:'BRL' }}</td>
+            <td class="text-center">
+              <a [routerLink]="['/consulta', item.id]" class="br-button circle small" title="Ver detalhes do registro">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </a>
+            </td>
           </tr>
           <tr *ngIf="(totalResultados$ | async) === 0">
-            <td colspan="7" class="no-results">Nenhum resultado encontrado para os filtros aplicados.</td>
+            <td colspan="8" class="no-results">Nenhum resultado encontrado para os filtros aplicados.</td>
           </tr>
         </tbody>
       </table>

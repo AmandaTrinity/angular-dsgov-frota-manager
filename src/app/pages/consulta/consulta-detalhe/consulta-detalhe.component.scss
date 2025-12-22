@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  padding: var(--spacing-scale-5x);
+  background-color: var(--surface-light);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(var(--spacing-scale-2x) * -1);
+  margin-left: calc(var(--spacing-scale-2x) * -1);
+}
+
+.col-sm-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: var(--spacing-scale-2x);
+  padding-left: var(--spacing-scale-2x);
+  box-sizing: border-box;
+}
+
+.br-card.flat-container {
+  background-color: var(--pure-0);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.divider {
+  border-top: 1px solid var(--border-color);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-scale-down-01);
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-60);
+  margin-bottom: var(--spacing-scale-half);
+  text-transform: uppercase;
+}
+h3 {
+  color: var(--blue-warm-vivid-70);
+  margin-top: 0;
+  margin-bottom: var(--spacing-scale-4x);
+}
+
+.br-title.is-md {
+  font-size: var(--font-size-scale-up-01);
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-80);
+}
+.value {
+  display: block;
+  font-size: var(--font-size-scale-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-80);
+  line-height: var(--font-lineheight-medium);
+}
+
+// Estilização dos botões
+.br-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semi-bold);
+  padding: 0 var(--spacing-scale-2x);
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+
+  // Variante Secundária (Voltar)
+  &.secondary {
+    background-color: transparent;
+    border-color: var(--interactive-light);
+    color: var(--interactive-light);
+
+    &:hover {
+      background-color: var(--surface-light-alt);
+    }
+  }
+
+  &.danger:hover {
+    background-color: var(--danger-dark);
+  }
+
+  // Modificador de tamanho
+  &.small {
+    height: 32px;
+    font-size: var(--font-size-scale-down-01);
+    padding: 0 var(--spacing-scale-base);
+  }
+}

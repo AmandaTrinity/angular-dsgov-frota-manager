@@ -41,3 +41,59 @@ body {
   margin: 0 auto;
   padding: 0 var(--spacing-scale-2x);
 }
+
+/* Classes Utilitárias Globais */
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.border-top {
+  border-top: 1px solid var(--border-color);
+}
+
+.text-primary {
+  color: var(--blue-warm-vivid-70);
+}
+
+.text-muted {
+  color: var(--gray-60);
+}
+
+.d-block {
+  display: block;
+}
+
+.text-base {
+  font-size: var(--font-size-scale-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-lineheight-medium);
+}
+
+.font-weight-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+// Utilitários de espaçamento
+.mb-1 { margin-bottom: var(--spacing-scale-base); }
+.mb-2 { margin-bottom: var(--spacing-scale-2x); }
+.mb-3 { margin-bottom: var(--spacing-scale-3x); }
+.mb-4 { margin-bottom: var(--spacing-scale-4x); }
+
+.mt-5 { margin-top: var(--spacing-scale-5x); }
+
+.mr-1 { margin-right: var(--spacing-scale-base); }
+.mr-2 { margin-right: var(--spacing-scale-2x); }
+
+.my-4 {
+  margin-top: var(--spacing-scale-4x);
+  margin-bottom: var(--spacing-scale-4x);
+}
+
+.p-4 { padding: var(--spacing-scale-4x); }
+
+.pt-3 { padding-top: var(--spacing-scale-3x); }
