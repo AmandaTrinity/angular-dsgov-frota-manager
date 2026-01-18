@@ -1,6 +1,11 @@
 <div class="container-lg" *ngIf="abastecimento$ | async as item">
   <div class="d-flex mb-3">
-    <button class="br-button secondary small" type="button" (click)="voltar()" aria-label="Voltar para a lista de consulta">
+    <button
+      class="br-button secondary small"
+      type="button"
+      (click)="voltar()"
+      aria-label="Voltar para a lista de consulta"
+    >
       <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>
       <span>Voltar</span>
     </button>
@@ -13,7 +18,7 @@
       <i class="fas fa-user mr-2 text-primary" aria-hidden="true"></i>
       <div class="br-title is-md">Dados do Motorista</div>
     </div>
-    
+
     <div class="row mb-4">
       <div class="col-sm-6">
         <span class="label">Nome Completo</span>
@@ -31,7 +36,7 @@
       <i class="fas fa-car mr-2 text-primary" aria-hidden="true"></i>
       <div class="br-title is-md">Dados do Veículo</div>
     </div>
-    
+
     <div class="row">
       <div class="col-sm-6">
         <span class="label">Placa</span>
@@ -53,7 +58,7 @@
     <div class="row">
       <div class="col-sm-6 mb-3">
         <span class="label">Data</span>
-        <span class="value">{{ item.data | date:'dd/MM/yyyy' }}</span>
+        <span class="value">{{ item.data | date: 'dd/MM/yyyy' }}</span>
       </div>
       <div class="col-sm-6 mb-3">
         <span class="label">Posto</span>
@@ -69,15 +74,15 @@
       </div>
       <div class="col-sm-6 mb-3">
         <span class="label">Valor por Litro</span>
-        <span class="value">{{ item.valorLitro | currency:'BRL' }}</span>
+        <span class="value">{{ item.valorLitro | currency: 'BRL' }}</span>
       </div>
       <div class="col-sm-6 mb-3">
         <span class="label">Quantidade</span>
-        <span class="value">{{ item.quantidadeLitros | number:'1.2-2' }} L</span>
+        <span class="value">{{ item.quantidadeLitros | number: '1.2-2' }} L</span>
       </div>
       <div class="col-sm-6">
         <span class="label">Valor Total Pago</span>
-        <span class="value">{{ item.valorTotalPago | currency:'BRL' }}</span>
+        <span class="value">{{ item.valorTotalPago | currency: 'BRL' }}</span>
       </div>
     </div>
   </div>
@@ -87,7 +92,7 @@
     <p class="text-base mb-3">
       Caso identifique algum erro nos dados deste abastecimento, você pode reportar para análise.
     </p>
-    
+
     <button class="br-button danger" type="button" (click)="reportarErro()">
       <i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>
       <span>Reportar Erro</span>

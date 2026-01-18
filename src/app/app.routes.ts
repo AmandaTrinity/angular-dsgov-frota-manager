@@ -9,27 +9,27 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     data: {
-      breadcrumb: 'Dashboard'
-    }
+      breadcrumb: 'Dashboard',
+    },
   },
   {
     path: 'consulta',
     data: {
-      breadcrumb: 'Consulta'
+      breadcrumb: 'Consulta',
     },
     children: [
       {
         path: '',
         component: ConsultaComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: ':id',
         component: ConsultaDetalheComponent,
         data: {
-          breadcrumb: 'Detalhe'
-        }
-      }
-    ]
-  }
+          breadcrumb: 'Detalhe',
+        },
+      },
+    ],
+  },
 ];

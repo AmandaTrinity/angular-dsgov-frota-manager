@@ -32,18 +32,12 @@ export class ConsultaFacade {
       shareReplay(1) // Cacheia a última emissão para evitar múltiplas chamadas HTTP
     );
 
-    this.abastecimentosFiltrados$ = combineLatest([
-      todosAbastecimentos$,
-      this.filtros$
-    ]).pipe(
+    this.abastecimentosFiltrados$ = combineLatest([todosAbastecimentos$, this.filtros$]).pipe(
       map(([lista, filtros]) => this.aplicarFiltros(lista, filtros)),
       shareReplay(1)
     );
 
-    this.dadosPaginados$ = combineLatest([
-      this.abastecimentosFiltrados$,
-      this.paginaAtual$
-    ]).pipe(
+    this.dadosPaginados$ = combineLatest([this.abastecimentosFiltrados$, this.paginaAtual$]).pipe(
       map(([lista, pagina]) => {
         const inicio = (pagina - 1) * this.PAGE_SIZE;
         const fim = inicio + this.PAGE_SIZE;
@@ -52,7 +46,7 @@ export class ConsultaFacade {
     );
 
     this.totalPaginas$ = this.abastecimentosFiltrados$.pipe(
-      map(lista => Math.ceil(lista.length / this.PAGE_SIZE) || 1)
+      map((lista) => Math.ceil(lista.length / this.PAGE_SIZE) || 1)
     );
   }
 
@@ -67,10 +61,11 @@ export class ConsultaFacade {
   }
 
   private aplicarFiltros(lista: Abastecimento[], filtros: Partial<Filtros>): Abastecimento[] {
-    return lista.filter(item => {
+    return lista.filter((item) => {
       const filtroUf = !filtros.uf || item.uf === filtros.uf;
       const filtroTipo = !filtros.tipo || item.tipoCombustivel === filtros.tipo;
-      const filtroDataInicio = !filtros.dataInicio || new Date(item.data) >= new Date(filtros.dataInicio);
+      const filtroDataInicio =
+        !filtros.dataInicio || new Date(item.data) >= new Date(filtros.dataInicio);
       const filtroDataFim = !filtros.dataFim || new Date(item.data) <= new Date(filtros.dataFim);
       return filtroUf && filtroTipo && filtroDataInicio && filtroDataFim;
     });

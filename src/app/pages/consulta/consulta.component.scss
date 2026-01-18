@@ -10,11 +10,12 @@
   gap: var(--spacing-scale-5x);
 }
 
-.filtros-card, .resultados-card {
+.filtros-card,
+.resultados-card {
   background-color: var(--pure-0);
   border-radius: 4px;
   padding: var(--spacing-scale-3x);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-color);
 }
 
@@ -44,7 +45,8 @@ h3 {
   color: var(--text-on-light);
 }
 
-.form-field input, .form-field select {
+.form-field input,
+.form-field select {
   padding: var(--spacing-scale-base);
   border: 1px solid var(--border-color);
   border-radius: 4px;
@@ -65,7 +67,10 @@ h3 {
   border-radius: 4px;
   cursor: pointer;
   font-weight: var(--font-weight-bold);
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 // Estilo para o botão primário
@@ -109,7 +114,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   padding: var(--spacing-scale-base) var(--spacing-scale-2x);
   text-align: left;
   border-bottom: 1px solid var(--border-color);

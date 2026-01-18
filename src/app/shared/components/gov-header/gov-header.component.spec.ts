@@ -8,9 +8,8 @@ describe('GovHeader', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GovHeaderComponent]
-    })
-    .compileComponents();
+      imports: [GovHeaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GovHeaderComponent);
     component = fixture.componentInstance;

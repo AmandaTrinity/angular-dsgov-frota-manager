@@ -13,7 +13,8 @@ Construir uma base sólida de frontend utilizando **Angular 20**, preparada para
 ## 🚀 Como Executar o Projeto
 
 ### Pré-requisitos
-- Node.js 18+ 
+
+- Node.js 18+
 - npm 10+
 
 ### Instalação
@@ -77,11 +78,13 @@ Documentação utilizada:
 ## 🧱 Arquitetura
 
 O projeto adota o **padrão Facade**, promovendo:
+
 - Separação entre lógica de negócio e apresentação
 - Componentes mais simples e reutilizáveis
 - Facilidade de manutenção e escalabilidade
 
 Estrutura base de camadas:
+
 - `components` – Componentes visuais
 - `facades` – Intermediação entre componentes e serviços
 - `services` – Regras de negócio e comunicação

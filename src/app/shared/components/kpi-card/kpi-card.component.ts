@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './kpi-card.component.html',
-  styleUrls: ['./kpi-card.component.scss']
+  styleUrls: ['./kpi-card.component.scss'],
 })
 export class KpiCardComponent {
   @Input() title: string = '';

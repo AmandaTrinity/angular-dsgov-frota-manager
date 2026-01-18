@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router, ActivatedRoute, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
+import {
+  RouterModule,
+  Router,
+  ActivatedRoute,
+  NavigationEnd,
+  PRIMARY_OUTLET,
+} from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 // Define a estrutura de um item do breadcrumb
@@ -27,18 +33,20 @@ export class GovHeaderComponent implements OnInit {
 
   ngOnInit() {
     // Escuta os eventos de navegação do roteador
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        // A cada nova navegação, reconstrói o breadcrumb
-        this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
-      });
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      // A cada nova navegação, reconstrói o breadcrumb
+      this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
+    });
   }
 
   /**
    * Constrói o array de breadcrumbs percorrendo a árvore de rotas.
    */
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
+  private createBreadcrumbs(
+    route: ActivatedRoute,
+    url: string = '',
+    breadcrumbs: Breadcrumb[] = []
+  ): Breadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {
