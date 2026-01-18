@@ -6,7 +6,7 @@
       "posto": "Posto Alvorada",
       "uf": "SP",
       "tipoCombustivel": "Gasolina",
-      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "motorista": { "nome": "Amanda Trinity", "cpf": "11122233344" },
       "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
       "valorLitro": 5.59,
       "quantidadeLitros": 45,
@@ -78,7 +78,7 @@
       "posto": "Posto Beira Mar",
       "uf": "CE",
       "tipoCombustivel": "Etanol",
-      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "motorista": { "nome": "Amanda Trinity", "cpf": "11122233344" },
       "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
       "valorLitro": 4.20,
       "quantidadeLitros": 80,
@@ -114,7 +114,7 @@
       "posto": "Posto Alvorada",
       "uf": "SP",
       "tipoCombustivel": "Etanol",
-      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "motorista": { "nome": "Amanda Trinity", "cpf": "11122233344" },
       "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
       "valorLitro": 3.90,
       "quantidadeLitros": 40,
@@ -134,7 +134,7 @@
     },
     {
       "id": 12,
-      "data": "2023-05-18",
+      "data": "2023-07-18",
       "posto": "Posto Ilha",
       "uf": "SC",
       "tipoCombustivel": "Diesel",
@@ -150,7 +150,7 @@
       "posto": "Posto Central",
       "uf": "RJ",
       "tipoCombustivel": "Gasolina",
-      "motorista": { "nome": "Amanda Trinity Nascimento", "cpf": "11122233344" },
+      "motorista": { "nome": "Amanda Trinity", "cpf": "11122233344" },
       "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
       "valorLitro": 5.70,
       "quantidadeLitros": 42,
@@ -227,6 +227,42 @@
       "valorLitro": 6.30,
       "quantidadeLitros": 95,
       "valorTotalPago": 598.50
+    },
+    {
+      "id": 20,
+      "data": "2023-03-05",
+      "posto": "Posto Pinheirão",
+      "uf": "PE",
+      "tipoCombustivel": "Diesel",
+      "motorista": { "nome": "Fernanda Souza", "cpf": "15489015745" },
+      "veiculo": { "placa": "BAI-4614", "modelo": "Scania R450" },
+      "valorLitro": 6.00,
+      "quantidadeLitros": 100,
+      "valorTotalPago": 600.00
+    },
+     {
+      "id": 21,
+      "data": "2023-05-12",
+      "posto": "Posto Alvorada",
+      "uf": "SP",
+      "tipoCombustivel": "Gasolina",
+      "motorista": { "nome": "Amanda Trinity", "cpf": "11122233344" },
+      "veiculo": { "placa": "ABC-1234", "modelo": "Fiat Uno" },
+      "valorLitro": 5.85,
+      "quantidadeLitros": 40,
+      "valorTotalPago": 234.00
+    },
+    {
+      "id": 22,
+      "data": "2023-06-15",
+      "posto": "Posto Central",
+      "uf": "RJ",
+      "tipoCombustivel": "Etanol",
+      "motorista": { "nome": "Carlos Silva", "cpf": "98765432100" },
+      "veiculo": { "placa": "DEF-5678", "modelo": "VW Gol" },
+      "valorLitro": 4.15,
+      "quantidadeLitros": 35,
+      "valorTotalPago": 145.25
     }
   ]
 }
