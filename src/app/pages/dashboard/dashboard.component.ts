@@ -60,7 +60,7 @@ export class DashboardComponent {
     });
     
     // Ordena os meses na ordem correta
-    const ordemMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    const ordemMeses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
     const meses = Array.from(todosMeses).sort((a, b) => 
       ordemMeses.indexOf(a) - ordemMeses.indexOf(b)
     );
@@ -83,7 +83,7 @@ export class DashboardComponent {
       colors: this.coresGraficos,
       stroke: {
         curve: 'smooth',
-        width: 3
+        width: 3,
       },
       markers: {
         size: 5,
