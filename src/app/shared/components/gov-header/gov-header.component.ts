@@ -5,10 +5,10 @@ import {
   Router,
   ActivatedRoute,
   NavigationEnd,
-  PRIMARY_OUTLET,
 } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BreadCrumbService } from '../../../core/services/breadcrumb.service';
 
 // Define a estrutura de um item do breadcrumb
 interface Breadcrumb {
@@ -29,6 +29,11 @@ export class GovHeaderComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly breadcrumbService = inject(BreadCrumbService);
+
+  private updateBreadcrumbs(): void {
+    this.breadcrumbs = this.breadcrumbService.getBreadcrumbs(this.activatedRoute.root);
+  }
 
   ngOnInit() {
     // Escuta os eventos de navegação do roteador
@@ -36,57 +41,14 @@ export class GovHeaderComponent implements OnInit {
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         takeUntilDestroyed(this.destroyRef)
-    )
+      )
       .subscribe(() => {
         // A cada nova navegação, reconstrói o breadcrumb
-        this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
-    });
+        this.updateBreadcrumbs();
+      });
 
     // Inicializa os breadcrumbs no carregamento inicial do componente
-    this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
+    this.updateBreadcrumbs();
   }
 
-  /**
-   * Constrói o array de breadcrumbs percorrendo a árvore de rotas.
-   */
-  private createBreadcrumbs(
-    route: ActivatedRoute,
-    url: string = '',
-    breadcrumbs: Breadcrumb[] = []
-  ): Breadcrumb[] {
-    const children: ActivatedRoute[] = route.children;
-
-    if (children.length === 0) {
-      return breadcrumbs;
-    }
-
-    for (const child of children) {
-      // Garante que estamos pegando a rota principal
-      if (child.outlet !== PRIMARY_OUTLET) {
-        continue;
-      }
-
-      // Pega o label definido no `data` da rota
-      const label = child.snapshot.data['breadcrumb'];
-      if (!label) {
-        // Se não houver label, continua para a próxima rota filha
-        breadcrumbs = this.createBreadcrumbs(child, url, breadcrumbs);
-        continue;
-      }
-
-      // Monta a URL do segmento
-      const routeUrl: string = child.snapshot.url.map((segment) => segment.path).join('/');
-      if (routeUrl) {
-        url += `/${routeUrl}`;
-      }
-
-      // Adiciona o breadcrumb ao array
-      breadcrumbs.push({ label, url });
-
-      // Chama recursivamente para as rotas filhas
-      breadcrumbs = this.createBreadcrumbs(child, url, breadcrumbs);
-    }
-
-    return breadcrumbs;
-  }
 }
