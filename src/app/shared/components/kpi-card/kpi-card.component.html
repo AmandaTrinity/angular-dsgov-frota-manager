@@ -1,13 +1,13 @@
 <div class="br-card">
   <div class="card-content">
     <div class="kpi-icon">
-      <i [className]="'fas ' + icon" aria-hidden="true"></i>
+      <i [className]="'fas ' + icon" [attr.aria-label]="title()"></i>
     </div>
     <div class="kpi-data">
-      <p class="kpi-title">{{ title }}</p>
-      <h3 class="kpi-value">{{ value }}</h3>
-      @if (label) {
-        <span class="kpi-label">{{ label }}</span>
+      <p class="kpi-title">{{ title() }}</p>
+      <h3 class="kpi-value">{{ value() }}</h3>
+      @if (subtitle()) {
+        <span class="kpi-label">{{ subtitle() }}</span>
       }
     </div>
   </div>
