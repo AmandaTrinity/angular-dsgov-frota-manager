@@ -6,7 +6,9 @@
         <label for="uf">Estado (UF)</label>
         <select id="uf" formControlName="uf">
           <option value="">Todos</option>
-          <option *ngFor="let uf of ufs" [value]="uf">{{ uf }}</option>
+          @for (uf of ufs; track uf) {
+            <option [value]="uf">{{ uf }}</option>
+          }
         </select>
       </div>
       <div class="form-field">
@@ -53,31 +55,37 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of abastecimentosExibidos$ | async">
-            <td>{{ item.data | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ item.posto }}</td>
-            <td>{{ item.uf }}</td>
-            <td>{{ item.tipoCombustivel }}</td>
-            <td>{{ item.valorLitro | currency: 'BRL' }}</td>
-            <td>{{ item.quantidadeLitros }} L</td>
-            <td>{{ item.valorTotalPago | currency: 'BRL' }}</td>
-            <td class="text-center">
-              <a [routerLink]="['/consulta', item.id]" class="br-button circle small" title="Ver detalhes do registro">
-                <i class="fas fa-eye" aria-hidden="true"></i>
-              </a>
-            </td>
-          </tr>
-          <tr *ngIf="(totalResultados$ | async) === 0">
-            <td colspan="8" class="no-results">Nenhum resultado encontrado para os filtros aplicados.</td>
-          </tr>
+          @for (item of abastecimentosExibidos$ | async; track item) {
+            <tr>
+              <td>{{ item.data | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.posto }}</td>
+              <td>{{ item.uf }}</td>
+              <td>{{ item.tipoCombustivel }}</td>
+              <td>{{ item.valorLitro | currency: 'BRL' }}</td>
+              <td>{{ item.quantidadeLitros }} L</td>
+              <td>{{ item.valorTotalPago | currency: 'BRL' }}</td>
+              <td class="text-center">
+                <a [routerLink]="['/consulta', item.id]" class="br-button circle small" title="Ver detalhes do registro">
+                  <i class="fas fa-eye" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          }
+          @if ((totalResultados$ | async) === 0) {
+            <tr>
+              <td colspan="8" class="no-results">Nenhum resultado encontrado para os filtros aplicados.</td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>
 
-    <footer class="paginacao-footer" *ngIf="((totalPaginas$ | async) ?? 0) > 1">
-      <button (click)="voltarPagina()" [disabled]="(paginaAtual$ | async) === 1">Anterior</button>
-      <span>Página {{ paginaAtual$ | async }} de {{ totalPaginas$ | async }}</span>
-      <button (click)="proximaPagina()" [disabled]="(paginaAtual$ | async) === (totalPaginas$ | async)">Próxima</button>
-    </footer>
+    @if (((totalPaginas$ | async) ?? 0) > 1) {
+      <footer class="paginacao-footer">
+        <button (click)="voltarPagina()" [disabled]="(paginaAtual$ | async) === 1">Anterior</button>
+        <span>Página {{ paginaAtual$ | async }} de {{ totalPaginas$ | async }}</span>
+        <button (click)="proximaPagina()" [disabled]="(paginaAtual$ | async) === (totalPaginas$ | async)">Próxima</button>
+      </footer>
+    }
   </section>
 </div>

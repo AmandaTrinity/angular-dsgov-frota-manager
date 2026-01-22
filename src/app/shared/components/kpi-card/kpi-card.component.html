@@ -6,7 +6,9 @@
     <div class="kpi-data">
       <p class="kpi-title">{{ title }}</p>
       <h3 class="kpi-value">{{ value }}</h3>
-      <span class="kpi-label" *ngIf="label">{{ label }}</span>
+      @if (label) {
+        <span class="kpi-label">{{ label }}</span>
+      }
     </div>
   </div>
 </div>

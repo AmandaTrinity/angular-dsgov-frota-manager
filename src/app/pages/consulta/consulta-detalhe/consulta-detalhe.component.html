@@ -1,101 +1,92 @@
-<div class="container-lg" *ngIf="abastecimento$ | async as item">
-  <div class="d-flex mb-3">
-    <button
-      class="br-button secondary small"
-      type="button"
-      (click)="voltar()"
-      aria-label="Voltar para a lista de consulta"
-    >
-      <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>
-      <span>Voltar</span>
-    </button>
+@if (abastecimento$ | async; as item) {
+  <div class="container-lg">
+    <div class="d-flex mb-3">
+      <button
+        class="br-button secondary small"
+        type="button"
+        (click)="voltar()"
+        aria-label="Voltar para a lista de consulta"
+        >
+        <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>
+        <span>Voltar</span>
+      </button>
+    </div>
+    <h3>Detalhes do Registro</h3>
+    <div class="br-card flat-container p-4">
+      <div class="d-flex align-items-center mb-3">
+        <i class="fas fa-user mr-2 text-primary" aria-hidden="true"></i>
+        <div class="br-title is-md">Dados do Motorista</div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-sm-6">
+          <span class="label">Nome Completo</span>
+          <span class="value">{{ item.motorista.nome }}</span>
+        </div>
+        <div class="col-sm-6">
+          <span class="label">CPF</span>
+          <span class="value">{{ item.motorista.cpf | cpfMask }}</span>
+        </div>
+      </div>
+      <div class="divider my-4"></div>
+      <div class="d-flex align-items-center mb-3">
+        <i class="fas fa-car mr-2 text-primary" aria-hidden="true"></i>
+        <div class="br-title is-md">Dados do Veículo</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <span class="label">Placa</span>
+          <span class="value">{{ item.veiculo.placa }}</span>
+        </div>
+        <div class="col-sm-6">
+          <span class="label">Modelo</span>
+          <span class="value">{{ item.veiculo.modelo }}</span>
+        </div>
+      </div>
+      <div class="divider my-4"></div>
+      <div class="d-flex align-items-center mb-3">
+        <i class="fas fa-gas-pump mr-2 text-primary" aria-hidden="true"></i>
+        <div class="br-title is-md">Dados do Abastecimento</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <span class="label">Data</span>
+          <span class="value">{{ item.data | date: 'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <span class="label">Posto</span>
+          <span class="value">{{ item.posto }}</span>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <span class="label">UF</span>
+          <span class="value">{{ item.uf }}</span>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <span class="label">Combustível</span>
+          <span class="value">{{ item.tipoCombustivel }}</span>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <span class="label">Valor por Litro</span>
+          <span class="value">{{ item.valorLitro | currency: 'BRL' }}</span>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <span class="label">Quantidade</span>
+          <span class="value">{{ item.quantidadeLitros | number: '1.2-2' }} L</span>
+        </div>
+        <div class="col-sm-6">
+          <span class="label">Valor Total Pago</span>
+          <span class="value">{{ item.valorTotalPago | currency: 'BRL' }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 pt-3 border-top">
+      <p class="font-weight-bold mb-1">Encontrou alguma inconsistência?</p>
+      <p class="text-base mb-3">
+        Caso identifique algum erro nos dados deste abastecimento, você pode reportar para análise.
+      </p>
+      <button class="br-button danger" type="button" (click)="reportarErro()">
+        <i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>
+        <span>Reportar Erro</span>
+      </button>
+    </div>
   </div>
-
-  <h3>Detalhes do Registro</h3>
-
-  <div class="br-card flat-container p-4">
-    <div class="d-flex align-items-center mb-3">
-      <i class="fas fa-user mr-2 text-primary" aria-hidden="true"></i>
-      <div class="br-title is-md">Dados do Motorista</div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-sm-6">
-        <span class="label">Nome Completo</span>
-        <span class="value">{{ item.motorista.nome }}</span>
-      </div>
-      <div class="col-sm-6">
-        <span class="label">CPF</span>
-        <span class="value">{{ item.motorista.cpf | cpfMask }}</span>
-      </div>
-    </div>
-
-    <div class="divider my-4"></div>
-
-    <div class="d-flex align-items-center mb-3">
-      <i class="fas fa-car mr-2 text-primary" aria-hidden="true"></i>
-      <div class="br-title is-md">Dados do Veículo</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <span class="label">Placa</span>
-        <span class="value">{{ item.veiculo.placa }}</span>
-      </div>
-      <div class="col-sm-6">
-        <span class="label">Modelo</span>
-        <span class="value">{{ item.veiculo.modelo }}</span>
-      </div>
-    </div>
-
-    <div class="divider my-4"></div>
-
-    <div class="d-flex align-items-center mb-3">
-      <i class="fas fa-gas-pump mr-2 text-primary" aria-hidden="true"></i>
-      <div class="br-title is-md">Dados do Abastecimento</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6 mb-3">
-        <span class="label">Data</span>
-        <span class="value">{{ item.data | date: 'dd/MM/yyyy' }}</span>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <span class="label">Posto</span>
-        <span class="value">{{ item.posto }}</span>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <span class="label">UF</span>
-        <span class="value">{{ item.uf }}</span>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <span class="label">Combustível</span>
-        <span class="value">{{ item.tipoCombustivel }}</span>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <span class="label">Valor por Litro</span>
-        <span class="value">{{ item.valorLitro | currency: 'BRL' }}</span>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <span class="label">Quantidade</span>
-        <span class="value">{{ item.quantidadeLitros | number: '1.2-2' }} L</span>
-      </div>
-      <div class="col-sm-6">
-        <span class="label">Valor Total Pago</span>
-        <span class="value">{{ item.valorTotalPago | currency: 'BRL' }}</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-5 pt-3 border-top">
-    <p class="font-weight-bold mb-1">Encontrou alguma inconsistência?</p>
-    <p class="text-base mb-3">
-      Caso identifique algum erro nos dados deste abastecimento, você pode reportar para análise.
-    </p>
-
-    <button class="br-button danger" type="button" (click)="reportarErro()">
-      <i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>
-      <span>Reportar Erro</span>
-    </button>
-  </div>
-</div>
+}

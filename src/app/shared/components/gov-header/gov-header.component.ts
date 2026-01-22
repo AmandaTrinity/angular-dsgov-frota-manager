@@ -1,5 +1,5 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   RouterModule,
   Router,
@@ -18,7 +18,7 @@ interface Breadcrumb {
 
 @Component({
   selector: 'app-gov-header',
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './gov-header.component.html',
   styleUrls: ['./gov-header.component.scss'],
 })
