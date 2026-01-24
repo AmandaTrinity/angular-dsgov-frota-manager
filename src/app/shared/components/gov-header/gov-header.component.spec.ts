@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GovHeaderComponent } from './gov-header.component';
 
-describe('GovHeader', () => {
+describe('GovHeaderComponent', () => {
   let component: GovHeaderComponent;
   let fixture: ComponentFixture<GovHeaderComponent>;
 
@@ -13,7 +12,7 @@ describe('GovHeader', () => {
 
     fixture = TestBed.createComponent(GovHeaderComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {

@@ -22,14 +22,24 @@
         </div>
       </div>
       <nav class="br-menu" aria-label="Menu Principal">
-        <ul>
-          <li>
-            <a class="menu-item" routerLink="/dashboard" routerLinkActive="active"> Dashboard </a>
-          </li>
-          <li>
-            <a class="menu-item" routerLink="/consulta" routerLinkActive="active"> Consulta </a>
-          </li>
-        </ul>
+        <a
+          class="menu-item"
+          routerLink="/dashboard"
+          routerLinkActive="active"
+          #dashboardRla="routerLinkActive"
+          [attr.aria-current]="dashboardRla.isActive ? 'page' : null"
+        >
+          Dashboard
+        </a>
+        <a
+          class="menu-item"
+          routerLink="/consulta"
+          routerLinkActive="active"
+          #consultaRla="routerLinkActive"
+          [attr.aria-current]="consultaRla.isActive ? 'page' : null"
+        >
+          Consulta
+        </a>
       </nav>
     </div>
   </div>
@@ -45,20 +55,17 @@
         </a>
       </li>
       <!-- Itera sobre o array de breadcrumbs gerado dinamicamente -->
-      <ng-container>
-        @for (breadcrumb of breadcrumbs; track breadcrumb; let last = $last) {
-          <li class="crumb" [attr.data-active]="last ? 'active' : null">
-            <i class="fas fa-chevron-right icon" aria-hidden="true"></i>
+      @for (breadcrumb of breadcrumbs(); track breadcrumb.url; let last = $last) {
+        <li class="crumb" [attr.data-active]="last ? 'active' : null">
+          <i class="fas fa-chevron-right icon" aria-hidden="true"></i>
 
-            @if (!last) {
-              <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
-            } @else {
-              <span aria-current="page">{{ breadcrumb.label }}</span>
-            }
-
-          </li>
-        }
-      </ng-container>
+          @if (!last) {
+            <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+          } @else {
+            <span aria-current="page">{{ breadcrumb.label }}</span>
+          }
+        </li>
+      }
     </ol>
   </div>
 </nav>
