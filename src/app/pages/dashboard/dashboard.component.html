@@ -4,7 +4,7 @@
       <app-kpi-card
         title="Preço Médio"
         [value]="(precoMedioGasolina$ | async | currency: 'BRL') ?? 'R$ 0,00'"
-        label="Gasolina (Dez/2024)"
+        subtitle="Gasolina (Dez/2024)"
         icon="fa-gas-pump"
         >
       </app-kpi-card>
@@ -13,7 +13,7 @@
       <app-kpi-card
         title="Preço Médio"
         [value]="(precoMedioDiesel$ | async | currency: 'BRL') ?? 'R$ 0,00'"
-        label="Diesel (Dez/2024)"
+        subtitle="Diesel (Dez/2024)"
         icon="fa-truck"
         >
       </app-kpi-card>
@@ -22,7 +22,7 @@
       <app-kpi-card
         title="Total de Litros"
         [value]="(totalLitros$ | async) ?? 0"
-        label="Últimos 30 dias"
+        subtitle="Últimos 30 dias"
         icon="fa-fill-drip"
         >
       </app-kpi-card>
