@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Breadcrumb } from '../../../pages/home/home';
+import { Breadcrumb } from '../../../layouts/navbar/navbar';
 
 @Component({
   selector: 'app-gov-header',
