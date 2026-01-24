@@ -19,7 +19,7 @@ interface FiltrosForm {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './consulta.component.html',
-  styleUrls: ['./consulta.component.scss']
+  styleUrls: ['./consulta.component.scss'],
 })
 export class ConsultaComponent implements OnInit, OnDestroy {
   // Estado para Filtragem
@@ -42,20 +42,20 @@ export class ConsultaComponent implements OnInit, OnDestroy {
       uf: [''],
       tipo: [''],
       dataInicio: [''],
-      dataFim: ['']
+      dataFim: [''],
     });
 
     this.abastecimentosExibidos$ = this.consultaFacade.dadosPaginados$;
-    this.totalResultados$ = this.consultaFacade.abastecimentosFiltrados$.pipe(map(list => list.length));
+    this.totalResultados$ = this.consultaFacade.abastecimentosFiltrados$.pipe(
+      map((list) => list.length)
+    );
     this.paginaAtual$ = this.consultaFacade.paginaAtual$;
     this.totalPaginas$ = this.consultaFacade.totalPaginas$;
   }
 
   ngOnInit(): void {
     // Reage a mudanças no formulário e atualiza a Facade.
-    this.filterForm.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(valores => {
+    this.filterForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((valores) => {
       this.consultaFacade.atualizarFiltros(valores as Partial<FiltrosForm>);
     });
   }
@@ -71,19 +71,19 @@ export class ConsultaComponent implements OnInit, OnDestroy {
       uf: '',
       tipo: '',
       dataInicio: '',
-      dataFim: ''
+      dataFim: '',
     });
   }
 
   // Métodos para Paginação
   proximaPagina(): void {
-    this.paginaAtual$.pipe(take(1)).subscribe(atual => {
+    this.paginaAtual$.pipe(take(1)).subscribe((atual) => {
       this.consultaFacade.mudarPagina(atual + 1);
     });
   }
 
   voltarPagina(): void {
-    this.paginaAtual$.pipe(take(1)).subscribe(atual => {
+    this.paginaAtual$.pipe(take(1)).subscribe((atual) => {
       if (atual > 1) {
         this.consultaFacade.mudarPagina(atual - 1);
       }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Abastecimento } from '../models/abastecimento.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FuelService {
   private readonly apiUrl = 'http://localhost:3000/abastecimentos';

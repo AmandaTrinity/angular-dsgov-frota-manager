@@ -10,8 +10,12 @@
     .header-logo {
       display: flex;
       align-items: center;
-      img { height: 32px; }
-      .header-sign { margin-left: var(--spacing-scale-base); }
+      img {
+        height: 32px;
+      }
+      .header-sign {
+        margin-left: var(--spacing-scale-base);
+      }
     }
   }
 
@@ -28,7 +32,7 @@
     .br-menu ul {
       display: flex;
       list-style: none;
-      gap: var(--spacing-scale-3x);;
+      gap: var(--spacing-scale-3x);
       margin: 0;
 
       .menu-item {
@@ -92,7 +96,7 @@
       }
     }
 
-    &[data-active="active"] {
+    &[data-active='active'] {
       color: var(--text-on-light);
       font-weight: var(--font-weight-medium);
 
