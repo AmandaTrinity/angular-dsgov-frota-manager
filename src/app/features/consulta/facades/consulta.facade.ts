@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { FuelService } from '../services/fuel.service';
-import { Abastecimento } from '../models/abastecimento.model';
+import { FuelService } from '../../../core/services/fuel.service';
+import { Abastecimento } from '../../../core/models/abastecimento.model';
 
 export interface Filtros {
   uf: string | null;

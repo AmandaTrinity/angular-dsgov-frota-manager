@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map, take } from 'rxjs/operators';
-import { ConsultaFacade } from '../../core/facades/consulta.facade';
+import { ConsultaFacade } from '../../facades/consulta.facade';
 
 // Define um tipo para os valores do formulário
 interface FiltrosForm {
@@ -16,7 +16,6 @@ interface FiltrosForm {
 
 @Component({
   selector: 'app-consulta',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './consulta.component.html',
   styleUrls: ['./consulta.component.scss'],

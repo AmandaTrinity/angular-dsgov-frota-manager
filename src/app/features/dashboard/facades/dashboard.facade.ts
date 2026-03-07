@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs';
-import { FuelService } from '../services/fuel.service';
-import { Abastecimento } from '../models/abastecimento.model';
+import { FuelService } from '../../../core/services/fuel.service';
+import { Abastecimento } from '../../../core/models/abastecimento.model';
 
 // Define a lista fixa de UFs qpara monitoramento
 const LISTA_UFS = ['SP', 'RJ', 'MG', 'PR', 'RS', 'BA', 'SC', 'GO', 'PE', 'CE'];

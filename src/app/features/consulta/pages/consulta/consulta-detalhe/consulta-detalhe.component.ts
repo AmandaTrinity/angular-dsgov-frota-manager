@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
-import { ConsultaFacade } from '@facades/consulta.facade';
-import { Abastecimento } from '../../../core/models/abastecimento.model';
-import { CpfMaskPipe } from '../../../shared/pipes/cpf-mask.pipe';
+import { ConsultaFacade } from '../../../facades/consulta.facade';
+import { Abastecimento } from '../../../../../core/models/abastecimento.model';
+import { CpfMaskPipe } from '../../../../../shared/pipes/cpf-mask.pipe';
 
 @Component({
   selector: 'app-consulta-detalhe',
-  standalone: true,
   imports: [CommonModule, RouterModule, CpfMaskPipe],
   templateUrl: './consulta-detalhe.component.html',
   styleUrl: './consulta-detalhe.component.scss',
@@ -16,11 +15,9 @@ import { CpfMaskPipe } from '../../../shared/pipes/cpf-mask.pipe';
 export class ConsultaDetalheComponent implements OnInit {
   abastecimento$!: Observable<Abastecimento | undefined>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private consultaFacade: ConsultaFacade,
-    private location: Location
-  ) {}
+  route = inject(ActivatedRoute);
+  consultaFacade = inject(ConsultaFacade);
+  location = inject(Location);
 
   ngOnInit(): void {
     // Abordagem reativa para buscar o abastecimento.
@@ -43,7 +40,6 @@ export class ConsultaDetalheComponent implements OnInit {
   reportarErro(): void {
     // Em uma aplicação real, isso chamaria um serviço para registrar o erro
     // e exibiria uma notificação não bloqueante (ex: toast/snackbar).
-    console.log('Solicitação de correção enviada para análise.');
     alert('Obrigado! Sua solicitação de correção foi enviada para análise.');
   }
 }

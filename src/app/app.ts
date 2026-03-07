@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Navbar } from './layouts/navbar/navbar';
+import { GovHeaderComponent } from './shared/components/gov-header/gov-header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar],
+  imports: [RouterOutlet, GovHeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

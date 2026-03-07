@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
-import { DashboardFacade } from '../../core/facades/dashboard.facade';
-import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card.component';
+import { DashboardFacade } from '../../facades/dashboard.facade';
+import { KpiCardComponent } from '../../../../shared/components/kpi-card/kpi-card.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
 // Tipo simples para os gráficos
@@ -10,7 +10,6 @@ type ChartOptions = any;
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   imports: [CommonModule, KpiCardComponent, NgApexchartsModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
