@@ -34,7 +34,7 @@
               "src/styles.scss",
               "node_modules/@govbr-ds/core/dist/core.min.css",
               "node_modules/@govbr-ds/core/dist/core-tokens.min.css"
-          ],
+            ],
             "scripts": ["node_modules/apexcharts/dist/apexcharts.min.js"]
           },
           "configurations": {
@@ -51,7 +51,13 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/app/environments/environments.ts",
+                  "with": "src/app/environments/environments.prod.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
