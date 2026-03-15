@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
+import { RouterModule } from '@angular/router';
 import { DashboardFacade } from '../../facades/dashboard.facade';
 import { KpiCardComponent } from '../../../../shared/components/kpi-card/kpi-card.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -10,7 +11,7 @@ type ChartOptions = any;
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, KpiCardComponent, NgApexchartsModule],
+  imports: [CommonModule, KpiCardComponent, NgApexchartsModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })

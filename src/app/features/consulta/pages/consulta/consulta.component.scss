@@ -1,10 +1,4 @@
-:host {
-  display: block;
-  padding: var(--spacing-scale-5x);
-  background-color: var(--surface-light);
-}
-
-.consulta-container {
+.container-lg {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-scale-5x);
