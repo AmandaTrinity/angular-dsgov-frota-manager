@@ -1,12 +1,17 @@
-# V-Lab Frontend
+# Frota Gerencial – V-Lab
 
-Este repositório contém o desenvolvimento da seleção de **frontend do V-Lab**, estruturado com foco em boas práticas de arquitetura, organização visual e aderência ao **Padrão Digital de Governo (DSGOV)**.
+Este repositório contém o sistema **Frota Gerencial**, desenvolvido em Angular seguindo o **Padrão Digital de Governo (DSGOV)**. O projeto permite visualizar, gerenciar e monitorar veículos de uma frota, com interface moderna, responsiva e acessível.
 
 ---
 
+## 🚦 Demonstração
+
+- **Frontend:** [angular-dsgov-frota-manager.vercel.app](https://angular-dsgov-frota-manager.vercel.app/)
+- **API Mock:** [mock-frota-manager.onrender.com/abastecimentos](https://mock-frota-manager.onrender.com/abastecimentos)
+
 ## 🎯 Objetivo do Projeto
 
-Construir uma base sólida de frontend utilizando **Angular 20**, preparada para escalabilidade e manutenção, respeitando princípios de acessibilidade, consistência visual e organização arquitetural.
+Construir uma solução web para gestão de frotas, permitindo o acompanhamento de abastecimentos, motoristas, veículos e indicadores, pronta para produção e fácil de manter.
 
 ---
 
@@ -24,7 +29,7 @@ Construir uma base sólida de frontend utilizando **Angular 20**, preparada para
 npm install
 ```
 
-### Executar aplicação
+### Executar aplicação localmente
 
 ```bash
 # Terminal 1 - Rodar o mock server (API fake)
@@ -34,16 +39,21 @@ npm run mock
 npm start
 ```
 
-A aplicação estará disponível em: `http://localhost:4200`  
-A API mock estará disponível em: `http://localhost:3000`
+Acesse em: [http://localhost:4200](http://localhost:4200)
+API local: [http://localhost:3000/abastecimentos](http://localhost:3000/abastecimentos)
+
+### Deploy em Produção
+
+- Frontend: [https://angular-dsgov-frota-manager.vercel.app/](https://angular-dsgov-frota-manager.vercel.app/)
+- API: [https://mock-frota-manager.onrender.com/abastecimentos](https://mock-frota-manager.onrender.com/abastecimentos)
 
 ### Endpoints disponíveis (Mock API)
 
-- `GET http://localhost:3000/abastecimentos` - Lista todos os abastecimentos
-- `GET http://localhost:3000/abastecimentos/:id` - Busca abastecimento por ID
-- `POST http://localhost:3000/abastecimentos` - Cria novo abastecimento
-- `PUT http://localhost:3000/abastecimentos/:id` - Atualiza abastecimento
-- `DELETE http://localhost:3000/abastecimentos/:id` - Remove abastecimento
+- `GET /abastecimentos` - Lista todos os abastecimentos
+- `GET /abastecimentos/:id` - Busca abastecimento por ID
+- `POST /abastecimentos` - Cria novo abastecimento
+- `PUT /abastecimentos/:id` - Atualiza abastecimento
+- `DELETE /abastecimentos/:id` - Remove abastecimento
 
 ---
 
@@ -118,8 +128,10 @@ src/
 │   │   └── components/    # Componentes reutilizáveis
 │   └── pages/             # Páginas da aplicação
 └── public/
-    └── assets/
-        └── mocks/         # Dados mockados (db.json)
+  └── assets/
+    └── mocks/         # Dados mockados (db.json)
+
 ```
+### © 2026 – Projeto Frota Gerencial | V-Lab
 
 ---

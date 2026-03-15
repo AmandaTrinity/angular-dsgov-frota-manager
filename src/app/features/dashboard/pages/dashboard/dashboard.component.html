@@ -1,28 +1,22 @@
 <div class="container-lg">
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
     <div>
       <h1>Dashboard</h1>
       <p>Acompanhe os principais indicadores e gráficos sobre os abastecimentos da frota.</p>
     </div>
-    <button class="br-button primary mb-3" type="button" routerLink="/consulta">Acessar Consulta</button>
+    <button class="br-button primary mb-3 consulta-btn" type="button" routerLink="/consulta">Acessar Consulta</button>
 
   </div>
-  <div class="row kpi-row">
-    <div class="col-sm-4">
-      <app-kpi-card title="Preço Médio" [value]="(precoMedioGasolina$ | async | currency: 'BRL') ?? 'R$ 0,00'"
-        subtitle="Gasolina (Dez/2024)" icon="fa-gas-pump">
-      </app-kpi-card>
-    </div>
-    <div class="col-sm-4">
-      <app-kpi-card title="Preço Médio" [value]="(precoMedioDiesel$ | async | currency: 'BRL') ?? 'R$ 0,00'"
-        subtitle="Diesel (Dez/2024)" icon="fa-truck">
-      </app-kpi-card>
-    </div>
-    <div class="col-sm-4">
-      <app-kpi-card title="Total de Litros" [value]="(totalLitros$ | async) ?? 0" subtitle="Últimos 30 dias"
-        icon="fa-fill-drip">
-      </app-kpi-card>
-    </div>
+  <div class="kpi-row">
+    <app-kpi-card title="Preço Médio" [value]="(precoMedioGasolina$ | async | currency: 'BRL') ?? 'R$ 0,00'"
+      subtitle="Gasolina (Dez/2024)" icon="fa-gas-pump">
+    </app-kpi-card>
+    <app-kpi-card title="Preço Médio" [value]="(precoMedioDiesel$ | async | currency: 'BRL') ?? 'R$ 0,00'"
+      subtitle="Diesel (Dez/2024)" icon="fa-truck">
+    </app-kpi-card>
+    <app-kpi-card title="Total de Litros" [value]="(totalLitros$ | async) ?? 0" subtitle="Últimos 30 dias"
+      icon="fa-fill-drip">
+    </app-kpi-card>
   </div>
 
   <div class="row">

@@ -5,12 +5,15 @@ import { Observable, map, switchMap } from 'rxjs';
 import { ConsultaFacade } from '../../../facades/consulta.facade';
 import { Abastecimento } from '../../../../../core/models/abastecimento.model';
 import { CpfMaskPipe } from '../../../../../shared/pipes/cpf-mask.pipe';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-consulta-detalhe',
-  imports: [CommonModule, RouterModule, CpfMaskPipe],
+  imports: [CommonModule, RouterModule, CpfMaskPipe, ToastModule],
   templateUrl: './consulta-detalhe.component.html',
   styleUrl: './consulta-detalhe.component.scss',
+  providers: [MessageService],
 })
 export class ConsultaDetalheComponent implements OnInit {
   abastecimento$!: Observable<Abastecimento | undefined>;
@@ -18,6 +21,7 @@ export class ConsultaDetalheComponent implements OnInit {
   route = inject(ActivatedRoute);
   consultaFacade = inject(ConsultaFacade);
   location = inject(Location);
+  messageService = inject(MessageService);
 
   ngOnInit(): void {
     // Abordagem reativa para buscar o abastecimento.
@@ -38,8 +42,11 @@ export class ConsultaDetalheComponent implements OnInit {
   }
 
   reportarErro(): void {
-    // Em uma aplicação real, isso chamaria um serviço para registrar o erro
-    // e exibiria uma notificação não bloqueante (ex: toast/snackbar).
-    alert('Obrigado! Sua solicitação de correção foi enviada para análise.');
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Solicitação enviada',
+      detail: 'Obrigado! Sua solicitação de correção foi enviada para análise.',
+      life: 4000,
+    });
   }
 }

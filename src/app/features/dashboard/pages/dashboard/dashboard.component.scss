@@ -7,9 +7,67 @@
 }
 h1 {
   margin-bottom: 0;
+  font-weight: 500;
+  font-size: 2.4rem;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
 }
+.container-lg {
+  width: 100%;
+  max-width: 1520px;
+  margin: var(--spacing-scale-5x) auto;
+  padding: 0 var(--spacing-scale-3x);
+  box-sizing: border-box;
+}
+
+.consulta-btn {
+  font-size: 1.3rem;
+  padding: 0.9rem 2.2rem;
+  min-width: 200px;
+  font-weight: 600;
+  border-radius: 6px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+h2 {
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1.4rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
 .kpi-row {
   margin-bottom: var(--spacing-scale-6x);
+}
+.kpi-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: var(--spacing-scale-6x);
+
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
 .chart-card {
