@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { ConsultaFacade } from '../../../facades/consulta.facade';
 import { Abastecimento } from '../../../../../core/models/abastecimento.model';
 import { CpfMaskPipe } from '../../../../../shared/pipes/cpf-mask.pipe';
@@ -15,27 +16,19 @@ import { MessageService } from 'primeng/api';
   styleUrl: './consulta-detalhe.component.scss',
   providers: [MessageService],
 })
-export class ConsultaDetalheComponent implements OnInit {
-  abastecimento$!: Observable<Abastecimento | undefined>;
-
-  route = inject(ActivatedRoute);
-  consultaFacade = inject(ConsultaFacade);
+export class ConsultaDetalheComponent {
+  private readonly route = inject(ActivatedRoute);
+  private readonly consultaFacade = inject(ConsultaFacade);
   location = inject(Location);
   messageService = inject(MessageService);
 
-  ngOnInit(): void {
-    // Abordagem reativa para buscar o abastecimento.
-    // Isso garante que os dados sejam atualizados se o ID na URL mudar
-    // sem que o usuário saia da página (ex: navegação interna).
-    this.abastecimento$ = this.route.paramMap.pipe(
-      map((params) => params.get('id')),
-      switchMap((id) =>
-        this.consultaFacade.abastecimentosFiltrados$.pipe(
-          map((lista) => lista.find((item) => item.id === id))
-        )
-      )
-    );
-  }
+  private readonly idSignal = toSignal(this.route.paramMap.pipe(map((params) => params.get('id'))));
+
+  readonly abastecimento: Signal<Abastecimento | undefined> = computed(() => {
+    const id = this.idSignal();
+    const lista = this.consultaFacade.abastecimentosFiltrados();
+    return lista.find((item: Abastecimento) => item.id === id);
+  });
 
   voltar(): void {
     this.location.back();

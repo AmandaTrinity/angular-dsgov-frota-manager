@@ -48,7 +48,7 @@
   <section class="resultados-card">
     <header class="resultados-header">
       <h3>Resultados da Consulta</h3>
-      <span>{{ totalResultados$ | async }} registro(s) encontrado(s)</span>
+      <span>{{ totalResultados() }} registro(s) encontrado(s)</span>
     </header>
 
     <div class="tabela-container">
@@ -66,7 +66,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (item of abastecimentosExibidos$ | async; track item) {
+          @for (item of abastecimentosExibidos(); track item) {
           <tr>
             <td>{{ item.data | date: 'dd/MM/yyyy' }}</td>
             <td>{{ item.posto }}</td>
@@ -82,7 +82,7 @@
             </td>
           </tr>
           }
-          @if ((totalResultados$ | async) === 0) {
+          @if (totalResultados() === 0) {
           <tr>
             <td colspan="8" class="no-results">Nenhum resultado encontrado para os filtros aplicados.</td>
           </tr>
@@ -91,11 +91,11 @@
       </table>
     </div>
 
-    @if (((totalPaginas$ | async) ?? 0) > 1) {
+    @if (totalPaginas() > 1) {
     <footer class="paginacao-footer">
-      <button (click)="voltarPagina()" [disabled]="(paginaAtual$ | async) === 1">Anterior</button>
-      <span>Página {{ paginaAtual$ | async }} de {{ totalPaginas$ | async }}</span>
-      <button (click)="proximaPagina()" [disabled]="(paginaAtual$ | async) === (totalPaginas$ | async)">Próxima</button>
+      <button (click)="voltarPagina()" [disabled]="paginaAtual() === 1">Anterior</button>
+      <span>Página {{ paginaAtual() }} de {{ totalPaginas() }}</span>
+      <button (click)="proximaPagina()" [disabled]="paginaAtual() === totalPaginas()">Próxima</button>
     </footer>
     }
   </section>

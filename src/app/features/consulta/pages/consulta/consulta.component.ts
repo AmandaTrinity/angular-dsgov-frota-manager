@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, computed, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil, map, take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ConsultaFacade } from '../../facades/consulta.facade';
 
 // Define um tipo para os valores do formulário
@@ -21,36 +21,25 @@ interface FiltrosForm {
   styleUrls: ['./consulta.component.scss'],
 })
 export class ConsultaComponent implements OnInit, OnDestroy {
+  private readonly fb = inject(FormBuilder);
+  private readonly consultaFacade = inject(ConsultaFacade);
+
   // Estado para Filtragem
-  filterForm: FormGroup;
+  filterForm: FormGroup = this.fb.group({
+    uf: [''],
+    tipo: [''],
+    dataInicio: [''],
+    dataFim: [''],
+  });
   ufs = ['SP', 'RJ', 'MG', 'PR', 'RS', 'BA', 'SC', 'GO', 'PE', 'CE', 'AM'];
 
-  // Estado para Exibição de Dados e Paginação
-  abastecimentosExibidos$: Observable<any[]>;
-  totalResultados$: Observable<number>;
-  paginaAtual$: Observable<number>;
-  totalPaginas$: Observable<number>;
+  // Estado para Exibição de Dados e Paginação em signals
+  readonly abastecimentosExibidos = this.consultaFacade.dadosPaginados;
+  readonly totalResultados = computed(() => this.consultaFacade.abastecimentosFiltrados().length);
+  readonly paginaAtual = this.consultaFacade.paginaAtual;
+  readonly totalPaginas = this.consultaFacade.totalPaginas;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private fb: FormBuilder,
-    private consultaFacade: ConsultaFacade
-  ) {
-    this.filterForm = this.fb.group({
-      uf: [''],
-      tipo: [''],
-      dataInicio: [''],
-      dataFim: [''],
-    });
-
-    this.abastecimentosExibidos$ = this.consultaFacade.dadosPaginados$;
-    this.totalResultados$ = this.consultaFacade.abastecimentosFiltrados$.pipe(
-      map((list) => list.length)
-    );
-    this.paginaAtual$ = this.consultaFacade.paginaAtual$;
-    this.totalPaginas$ = this.consultaFacade.totalPaginas$;
-  }
 
   ngOnInit(): void {
     // Reage a mudanças no formulário e atualiza a Facade.
@@ -76,16 +65,12 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
   // Métodos para Paginação
   proximaPagina(): void {
-    this.paginaAtual$.pipe(take(1)).subscribe((atual) => {
-      this.consultaFacade.mudarPagina(atual + 1);
-    });
+    this.consultaFacade.mudarPagina(this.paginaAtual() + 1);
   }
 
   voltarPagina(): void {
-    this.paginaAtual$.pipe(take(1)).subscribe((atual) => {
-      if (atual > 1) {
-        this.consultaFacade.mudarPagina(atual - 1);
-      }
-    });
+    if (this.paginaAtual() > 1) {
+      this.consultaFacade.mudarPagina(this.paginaAtual() - 1);
+    }
   }
 }

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, retry, shareReplay, tap } from 'rxjs';
 import { FuelService } from '../../../core/services/fuel.service';
 import { Abastecimento } from '../../../core/models/abastecimento.model';
 
@@ -9,94 +9,95 @@ const LISTA_UFS = ['SP', 'RJ', 'MG', 'PR', 'RS', 'BA', 'SC', 'GO', 'PE', 'CE'];
 
 @Injectable({ providedIn: 'root' })
 export class DashboardFacade {
-  // Cria um fluxo que busca os dados e os mantém "vivos" para vários componentes
-  private abastecimentos$: Observable<Abastecimento[]>;
+  private readonly fuelService = inject(FuelService);
 
-  // KPIs
-  public precoMedioGasolina$: Observable<number>;
-  public precoMedioDiesel$: Observable<number>;
-  public totalLitros$: Observable<number>;
-  public totalPostos$: Observable<number>;
-  public consumoPorEstado$: Observable<{ name: string; value: number }[]>;
-  public evolucaoPrecos$: Observable<{ name: string; series: { name: string; value: number }[] }[]>;
+  private readonly loadingSignal = signal(true);
+  readonly loading = this.loadingSignal.asReadonly();
 
-  constructor(private fuelService: FuelService) {
-    this.abastecimentos$ = this.fuelService.getAbastecimentos().pipe(
-      map((response: any) => (response && response.abastecimentos) || response || []),
-      shareReplay(1) // evita múltiplas chamadas HTTP
+  private readonly errorSignal = signal<string | null>(null);
+  readonly error = this.errorSignal.asReadonly();
+
+  private readonly abastecimentosRequest$ = this.fuelService.getAbastecimentos().pipe(
+    map((response: Abastecimento[] | { abastecimentos?: Abastecimento[] }) => {
+      if (Array.isArray(response)) {
+        return response;
+      }
+
+      return response?.abastecimentos ?? [];
+    }),
+    tap({
+    next: () => {
+        this.errorSignal.set(null);
+        this.loadingSignal.set(false);
+      },
+      error: () => {
+        this.errorSignal.set('Aguardando API de mock.');
+        this.loadingSignal.set(true);
+      },
+    }),
+    shareReplay(1)
+  );
+
+  readonly abastecimentos = toSignal(this.abastecimentosRequest$, {
+    initialValue: [] as Abastecimento[],
+  });
+
+  // KPIs/Gráficos em Signals (estado de apresentação pronto para o componente)
+  readonly precoMedioGasolina = computed(() => {
+    const gasolinaLista = this.abastecimentos().filter(
+      (item) => item.tipoCombustivel === 'Gasolina'
+    );
+    if (gasolinaLista.length === 0) return 0;
+    const soma = gasolinaLista.reduce((acc, curr) => acc + curr.valorLitro, 0);
+    return soma / gasolinaLista.length;
+  });
+
+  readonly precoMedioDiesel = computed(() => {
+    const dieselLista = this.abastecimentos().filter((item) => item.tipoCombustivel === 'Diesel');
+    if (dieselLista.length === 0) return 0;
+    const soma = dieselLista.reduce((acc, curr) => acc + curr.valorLitro, 0);
+    return soma / dieselLista.length;
+  });
+
+  readonly totalLitros = computed(() =>
+    this.abastecimentos().reduce((acc, curr) => acc + curr.quantidadeLitros, 0)
+  );
+
+  readonly totalPostos = computed(
+    () => new Set(this.abastecimentos().map((item) => item.posto)).size
+  );
+
+  readonly consumoPorEstado = computed<{ name: string; value: number }[]>(() => {
+    const dadosIniciais = LISTA_UFS.reduce(
+      (acc, uf) => ({ ...acc, [uf]: 0 }),
+      {} as { [key: string]: number }
     );
 
-    // KPI: Preço Médio Gasolina
-    this.precoMedioGasolina$ = this.abastecimentos$.pipe(
-      map((lista) => {
-        const gasolinaLista = lista.filter((item) => item.tipoCombustivel === 'Gasolina');
-        if (gasolinaLista.length === 0) return 0;
-        const soma = gasolinaLista.reduce((acc, curr) => acc + curr.valorLitro, 0);
-        return soma / gasolinaLista.length;
-      })
-    );
+    const agrupado = this.abastecimentos().reduce((acc: { [key: string]: number }, curr) => {
+      if (acc[curr.uf] !== undefined) {
+        acc[curr.uf] += curr.quantidadeLitros;
+      }
+      return acc;
+    }, dadosIniciais);
 
-    // KPI: Preço Médio Diesel
-    this.precoMedioDiesel$ = this.abastecimentos$.pipe(
-      map((lista) => {
-        const dieselLista = lista.filter((item) => item.tipoCombustivel === 'Diesel');
-        if (dieselLista.length === 0) return 0;
-        const soma = dieselLista.reduce((acc, curr) => acc + curr.valorLitro, 0);
-        return soma / dieselLista.length;
-      })
-    );
+    return Object.keys(agrupado)
+      .map((uf) => ({
+        name: uf,
+        value: agrupado[uf],
+      }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, 10);
+  });
 
-    // KPI: Total de Litros Consumidos
-    this.totalLitros$ = this.abastecimentos$.pipe(
-      map((lista) => lista.reduce((acc, curr) => acc + curr.quantidadeLitros, 0))
-    );
-
-    // KPI: Quantidade de Postos Monitorados
-    this.totalPostos$ = this.abastecimentos$.pipe(
-      map((lista) => new Set(lista.map((item) => item.posto)).size)
-    );
-
-    // Gráfico: Consumo por Estado (Top 10)
-    this.consumoPorEstado$ = this.abastecimentos$.pipe(
-      map((lista) => {
-        // Cria um mapa inicial
-        const dadosIniciais = LISTA_UFS.reduce(
-          (acc, uf) => ({ ...acc, [uf]: 0 }),
-          {} as { [key: string]: number }
-        );
-
-        // Soma os litros de cada abastecimento no seu estado
-        const agrupado = lista.reduce((acc: { [key: string]: number }, curr) => {
-          if (acc[curr.uf] !== undefined) {
-            acc[curr.uf] += curr.quantidadeLitros;
-          }
-          return acc;
-        }, dadosIniciais);
-
-        // Transforma o objeto no formato array [{ name, value }] do ngx-charts
-        return Object.keys(agrupado)
-          .map((uf) => ({
-            name: uf,
-            value: agrupado[uf],
-          }))
-          .sort((a, b) => b.value - a.value) // Ordenamos do maior para o menor
-          .slice(0, 10); // Garante apenas o Top 10
-      })
-    );
-
-    // Gráfico: Evolução de Preços por Combustível
-    this.evolucaoPrecos$ = this.abastecimentos$.pipe(
-      map((lista) => {
-        const tipos = ['Gasolina', 'Diesel', 'Etanol'];
-
-        // Cria a série para cada tipo de combustível
-        return tipos.map((tipo) => ({
-          name: tipo,
-          series: this.getMediaMensal(lista, tipo),
-        }));
-      })
-    );
-  }
+  readonly evolucaoPrecos = computed<{ name: string; series: { name: string; value: number }[] }[]>(
+    () => {
+      const tipos = ['Gasolina', 'Diesel', 'Etanol'];
+      return tipos.map((tipo) => ({
+        name: tipo,
+        series: this.getMediaMensal(this.abastecimentos(), tipo),
+      }));
+    }
+  );
 
   private getMediaMensal(lista: Abastecimento[], tipo: string): { name: string; value: number }[] {
     const mesesAbreviados = [

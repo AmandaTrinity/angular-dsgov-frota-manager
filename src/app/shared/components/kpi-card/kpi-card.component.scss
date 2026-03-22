@@ -31,6 +31,7 @@
 .kpi-data {
   display: flex;
   flex-direction: column;
+  gap: 0.8rem;
 }
 
 .kpi-title {
@@ -50,4 +51,8 @@
   margin-top: var(--spacing-scale-half);
   font-size: var(--font-size-scale-down-01);
   color: var(--text-on-light);
+}
+
+.color-cinza {
+  border-left: 4px solid #ccc;
 }

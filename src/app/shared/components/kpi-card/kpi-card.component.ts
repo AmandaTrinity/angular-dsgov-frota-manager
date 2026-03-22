@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-kpi-card',
-  standalone: true,
-  imports: [],
+  imports: [SkeletonModule],
   templateUrl: './kpi-card.component.html',
   styleUrls: ['./kpi-card.component.scss'],
 })
@@ -12,4 +12,5 @@ export class KpiCardComponent {
   value = input<string | number>('');
   icon = input<string>('');
   subtitle = input<string>('');
+  loading = input<boolean>(true);
 }

@@ -8,14 +8,14 @@
 
   </div>
   <div class="kpi-row">
-    <app-kpi-card title="Preço Médio" [value]="(precoMedioGasolina$ | async | currency: 'BRL') ?? 'R$ 0,00'"
-      subtitle="Gasolina (Dez/2024)" icon="fa-gas-pump">
+    <app-kpi-card title="Preço Médio" [value]="(dashboardFacade.precoMedioGasolina() | currency: 'BRL') ?? 'R$ 0,00'"
+      subtitle="Gasolina (Dez/2024)" icon="fa-gas-pump" [loading]="dashboardFacade.loading()">
     </app-kpi-card>
-    <app-kpi-card title="Preço Médio" [value]="(precoMedioDiesel$ | async | currency: 'BRL') ?? 'R$ 0,00'"
-      subtitle="Diesel (Dez/2024)" icon="fa-truck">
+    <app-kpi-card title="Preço Médio" [value]="(dashboardFacade.precoMedioDiesel() | currency: 'BRL') ?? 'R$ 0,00'"
+      subtitle="Diesel (Dez/2024)" icon="fa-truck" [loading]="dashboardFacade.loading()">
     </app-kpi-card>
-    <app-kpi-card title="Total de Litros" [value]="(totalLitros$ | async) ?? 0" subtitle="Últimos 30 dias"
-      icon="fa-fill-drip">
+    <app-kpi-card title="Total de Litros" [value]="dashboardFacade.totalLitros()" subtitle="Últimos 30 dias"
+      icon="fa-fill-drip" [loading]="dashboardFacade.loading()">
     </app-kpi-card>
   </div>
 
@@ -23,7 +23,7 @@
     <div class="col-lg-6 mb-4">
       <div class="chart-card">
         <h3 class="h3">Evolução de Preços (Últimos 6 meses)</h3>
-        @if (lineChartOptions$ | async; as options) {
+        @if (lineChartOptions(); as options) {
         <div>
           <apx-chart [series]="options.series" [chart]="options.chart" [xaxis]="options.xaxis" [colors]="options.colors"
             [stroke]="options.stroke" [markers]="options.markers" [legend]="options.legend" [tooltip]="options.tooltip"
@@ -37,7 +37,7 @@
     <div class="col-lg-6 mb-4">
       <div class="chart-card">
         <h3 class="h3">Consumo por Estado (Top 10)</h3>
-        @if (barChartOptions$ | async; as options) {
+        @if (barChartOptions(); as options) {
         <div>
           <apx-chart [series]="options.series" [chart]="options.chart" [xaxis]="options.xaxis" [colors]="options.colors"
             [tooltip]="options.tooltip">

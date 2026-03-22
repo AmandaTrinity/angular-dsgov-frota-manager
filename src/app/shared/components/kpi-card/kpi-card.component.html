@@ -1,3 +1,4 @@
+@if (!loading()) {
 <div class="br-card">
   <div class="card-content">
     <div class="kpi-icon">
@@ -12,3 +13,17 @@
     </div>
   </div>
 </div>
+} @else {
+  <div class="br-card color-cinza">
+    <div class="card-content">
+      <div class="kpi-icon">
+        <p-skeleton shape="circle" width="40px" height="40px"></p-skeleton>
+      </div>
+      <div class="kpi-data">
+        <p-skeleton width="50px"></p-skeleton>
+        <p-skeleton width="80px" height="40px"></p-skeleton>
+        <p-skeleton width="100%"></p-skeleton>
+      </div>
+    </div>
+  </div>
+}

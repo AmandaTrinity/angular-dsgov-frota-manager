@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, map } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { DashboardFacade } from '../../facades/dashboard.facade';
 import { KpiCardComponent } from '../../../../shared/components/kpi-card/kpi-card.component';
@@ -16,35 +15,18 @@ type ChartOptions = any;
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  // Dados dos KPIs (valores simples)
-  precoMedioGasolina$: Observable<number>;
-  totalLitros$: Observable<number>;
-  totalPostos$: Observable<number>;
-  precoMedioDiesel$!: Observable<number>;
+  readonly dashboardFacade = inject(DashboardFacade);
 
-  // Opções dos gráficos
-  lineChartOptions$: Observable<ChartOptions>;
-  barChartOptions$: Observable<ChartOptions>;
+  // Opções dos gráficos em signal
+  readonly lineChartOptions = computed(() =>
+    this.criarGraficoLinha(this.dashboardFacade.evolucaoPrecos())
+  );
+  readonly barChartOptions = computed(() =>
+    this.criarGraficoBarras(this.dashboardFacade.consumoPorEstado())
+  );
 
   // Cores dos gráficos (DSGOV)
   private coresGraficos = ['#1351B4', '#168821', '#FFCD07'];
-
-  constructor(private dashboardFacade: DashboardFacade) {
-    // Busca os dados do facade
-    this.precoMedioGasolina$ = this.dashboardFacade.precoMedioGasolina$;
-    this.totalLitros$ = this.dashboardFacade.totalLitros$;
-    this.totalPostos$ = this.dashboardFacade.totalPostos$;
-    this.precoMedioDiesel$ = this.dashboardFacade.precoMedioDiesel$;
-
-    // Cria os gráficos a partir dos dados
-    this.lineChartOptions$ = this.dashboardFacade.evolucaoPrecos$.pipe(
-      map((dados) => this.criarGraficoLinha(dados))
-    );
-
-    this.barChartOptions$ = this.dashboardFacade.consumoPorEstado$.pipe(
-      map((dados) => this.criarGraficoBarras(dados))
-    );
-  }
 
   // Cria o gráfico de linha (evolução de preços)
   private criarGraficoLinha(dados: any[]): ChartOptions {
