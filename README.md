@@ -7,7 +7,9 @@ Este repositório contém o sistema **Frota Gerencial**, desenvolvido em Angular
 ## 🚦 Demonstração
 
 - **Frontend:** [angular-dsgov-frota-manager.vercel.app](https://angular-dsgov-frota-manager.vercel.app/)
-- **API Mock:** [mock-frota-manager.onrender.com/abastecimentos](https://mock-frota-manager.onrender.com/abastecimentos)
+- **API Mock (legado):** [mock-frota-manager.onrender.com/abastecimentos](https://mock-frota-manager.onrender.com/abastecimentos)
+
+> ⚠️ Uma API real (NestJS + Prisma + PostgreSQL) está em desenvolvimento em [`api/`](api/README.md), substituindo o mock por um backend com modelagem relacional, validação e regras de negócio. O frontend ainda consome o mock até a integração ser concluída.
 
 ## 🎯 Objetivo do Projeto
 

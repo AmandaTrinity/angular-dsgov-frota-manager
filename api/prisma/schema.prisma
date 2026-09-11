@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TipoCombustivel {
+  GASOLINA
+  ETANOL
+  DIESEL
+  GNV
+  ELETRICO
+}
+
+enum StatusVeiculo {
+  ATIVO
+  MANUTENCAO
+  INATIVO
+}
+
+enum StatusMotorista {
+  ATIVO
+  INATIVO
+}
+
+model Veiculo {
+  id              String          @id @default(uuid())
+  placa           String          @unique
+  modelo          String
+  marca           String?
+  anoFabricacao   Int?
+  tipoCombustivel TipoCombustivel
+  status          StatusVeiculo   @default(ATIVO)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  abastecimentos  Abastecimento[]
+
+  @@map("veiculos")
+}
+
+model Motorista {
+  id        String          @id @default(uuid())
+  nome      String
+  cpf       String          @unique
+  cnh       String?
+  status    StatusMotorista @default(ATIVO)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  abastecimentos Abastecimento[]
+
+  @@map("motoristas")
+}
+
+model Abastecimento {
+  id               String          @id @default(uuid())
+  data             DateTime
+  posto            String
+  uf               String          @db.Char(2)
+  tipoCombustivel  TipoCombustivel
+  valorLitro       Decimal         @db.Decimal(10, 3)
+  quantidadeLitros Decimal         @db.Decimal(10, 3)
+  valorTotalPago   Decimal         @db.Decimal(10, 2)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  motoristaId String
+  motorista   Motorista @relation(fields: [motoristaId], references: [id], onDelete: Restrict)
+
+  veiculoId String
+  veiculo   Veiculo @relation(fields: [veiculoId], references: [id], onDelete: Restrict)
+
+  @@index([motoristaId])
+  @@index([veiculoId])
+  @@index([data])
+  @@map("abastecimentos")
+}
